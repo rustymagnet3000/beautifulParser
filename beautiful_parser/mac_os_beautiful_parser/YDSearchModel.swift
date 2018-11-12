@@ -14,10 +14,6 @@ struct YDSearchTerm: Codable {
         case searchResult = "sr"
     }
     func YDdescription() -> String {
-        if self.searchResult == nil {
-            return searchPattern
-        } else {
-            return searchPattern + "\t" + searchResult!
-        }
+        return searchPattern + "\t" + (searchResult ?? "not found")
     }
 }
