@@ -1,6 +1,8 @@
 # Xcode
 ## YD additions
 *.DS_Store
+beautiful_parser/not_on_repo/
+
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Build generated

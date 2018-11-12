@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:beautiful_parser.xcodeproj">
+      location = "self:../mac_os_beautiful_parser">
    </FileRef>
 </Workspace>
