@@ -4,7 +4,10 @@ class YDMainViewController: NSViewController {
 
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var file_path_lbl: NSTextField!
-    let tableViewData = [["keyColumn":"waiting..","valueColumn":"for file"],["keyColumn":"...","valueColumn":"..."]]
+    let tableViewData = [
+        ["keyColumn":"waiting..","valueColumn":"for file"],
+        ["keyColumn":"waiting2..","valueColumn":"for file 2"],
+        ["keyColumn":"...","valueColumn":"..."]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,11 @@ class YDMainViewController: NSViewController {
         
         panel.beginSheetModal(for: window) { (result) in
             print("user selected file")
+            
+            if let a = panel.url {
+                let b = YDSelectedFile(file: a)
+                self.file_path_lbl.stringValue = b.fileName
+            }
         }
     }
     
@@ -37,6 +45,7 @@ class YDMainViewController: NSViewController {
         self.view.window?.title = "🐝 parser 🐝"
     }
 }
+
 extension YDMainViewController:NSTableViewDataSource, NSTableViewDelegate{
     
     fileprivate enum CellIdentifiers {
