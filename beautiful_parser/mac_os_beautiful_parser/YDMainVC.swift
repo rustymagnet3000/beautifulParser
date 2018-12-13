@@ -34,7 +34,10 @@ class YDMainViewController: NSViewController {
             print("user selected file")
             
             if let a = panel.url {
-                let b = YDSelectedFile(file: a)
+                guard let b = YDSelectedFile(file: a) else {
+                    self.file_path_lbl.stringValue = "❎ file not allowed"
+                    return
+                }
                 self.file_path_lbl.stringValue = b.fileName
             }
         }

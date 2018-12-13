@@ -1,30 +1,28 @@
 import Foundation
 
+public enum YDError: Error {
+    case FileCheckFailed
+}
+
 class YDSelectedFile {
 
-    let fileURL: URL
-    let fileName: String
+    var fileURL: URL
+    let fileName: String 
+    private let home: URL
     
-    convenience init (file: URL) {
+    convenience init? (file: URL) {
+        if !FileManager.default.fileExists(atPath: file.path) || !FileManager.default.isReadableFile(atPath: file.path){
+            return nil
+        }
+        if FileManager.default.isExecutableFile(atPath: file.path){
+            return nil
+        }
         self.init(fileURL: file, fileName: file.lastPathComponent)
     }
     
-    private init(fileURL: URL, fileName: String) {
+    private init?(fileURL: URL, fileName: String) {
         self.fileURL = fileURL
         self.fileName = fileName
-        fileChecks()  // MARK: add handling code
-    }
-    
-    func fileChecks() -> Bool {
-        if !FileManager.default.fileExists(atPath: fileURL.path){
-            return false
-        }
-        if !FileManager.default.isReadableFile(atPath: fileURL.path){
-            return false
-        }
-        if FileManager.default.isExecutableFile(atPath: fileURL.path){
-            return false
-        }
-        return true
+        self.home = FileManager.default.homeDirectoryForCurrentUser
     }
 }
