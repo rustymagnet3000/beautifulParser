@@ -1,14 +1,16 @@
 import Foundation
 
 do {
-
-    let searchTerms = URL(fileURLWithPath: "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json")
-    let log = URL(fileURLWithPath: "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt")
+    let log = "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt"
+    guard let a = YDSelectedFile(fileString: log) else {
+        throw YDError.LogFileFailed
+    }
     
-
-    
-    let a = YDSelectedFile(file: log)
-    let b = YDSelectedFile(file: searchTerms)
+    let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json"
+    guard let b = YDSelectedFile(fileString: searchTerms) else {
+        throw YDError.SearchTermFileFailed
+    }
+    print("happy" + b.fileName)
     
   //  let st_file_URL: URL = home.appendingPathComponent(st_file)
     
