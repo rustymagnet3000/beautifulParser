@@ -14,6 +14,9 @@
 		0F1565D82191F06A009D8033 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1565D72191F06A009D8033 /* Assets.xcassets */; };
 		0F1565DB2191F06A009D8033 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1565D92191F06A009D8033 /* Main.storyboard */; };
 		0F1565E72191F06A009D8033 /* beautiful_parserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1565E62191F06A009D8033 /* beautiful_parserTests.swift */; };
+		0F7CA2E621C7B92100C552EE /* YDParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7CA2E521C7B92100C552EE /* YDParseFile.swift */; };
+		0F7CA2E721C7B92100C552EE /* YDParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7CA2E521C7B92100C552EE /* YDParseFile.swift */; };
+		0F7CA2E821C7E3DB00C552EE /* YDSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF2709E2199B06200A4A7FD /* YDSearchModel.swift */; };
 		0F98E1D32192EEE700C330E4 /* YDSelectedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F98E1D22192EEE700C330E4 /* YDSelectedFile.swift */; };
 		0FF2709F2199B06200A4A7FD /* YDSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF2709E2199B06200A4A7FD /* YDSearchModel.swift */; };
 		0FF270A12199B09900A4A7FD /* YDStringKiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF270A02199B09900A4A7FD /* YDStringKiller.swift */; };
@@ -55,10 +58,11 @@
 		0F1565E22191F06A009D8033 /* beautiful_parserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beautiful_parserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1565E62191F06A009D8033 /* beautiful_parserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beautiful_parserTests.swift; sourceTree = "<group>"; };
 		0F1565E82191F06A009D8033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F7CA2E521C7B92100C552EE /* YDParseFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDParseFile.swift; sourceTree = "<group>"; };
+		0F7CA2E921C80FC000C552EE /* logs.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = logs.txt; sourceTree = "<group>"; };
 		0F98E1D22192EEE700C330E4 /* YDSelectedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDSelectedFile.swift; sourceTree = "<group>"; };
 		0FF2709E2199B06200A4A7FD /* YDSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDSearchModel.swift; sourceTree = "<group>"; };
 		0FF270A02199B09900A4A7FD /* YDStringKiller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDStringKiller.swift; sourceTree = "<group>"; };
-		0FF270A32199BF3500A4A7FD /* logs.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = logs.txt; sourceTree = "<group>"; };
 		0FF270A42199BF4C00A4A7FD /* search_terms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_terms.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +126,7 @@
 				0F1565D32191F068009D8033 /* YDAppDelegate.swift */,
 				0F1565D52191F068009D8033 /* YDMainVC.swift */,
 				0FF2709E2199B06200A4A7FD /* YDSearchModel.swift */,
+				0F7CA2E521C7B92100C552EE /* YDParseFile.swift */,
 				0FF270A02199B09900A4A7FD /* YDStringKiller.swift */,
 				0F98E1D22192EEE700C330E4 /* YDSelectedFile.swift */,
 				0F1565D72191F06A009D8033 /* Assets.xcassets */,
@@ -144,7 +149,7 @@
 		0FF270A52199BF5D00A4A7FD /* not_on_repo */ = {
 			isa = PBXGroup;
 			children = (
-				0FF270A32199BF3500A4A7FD /* logs.txt */,
+				0F7CA2E921C80FC000C552EE /* logs.txt */,
 				0FF270A42199BF4C00A4A7FD /* search_terms.json */,
 			);
 			path = not_on_repo;
@@ -271,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7CA2E721C7B92100C552EE /* YDParseFile.swift in Sources */,
 				0F1248FF2199A77C00F908A9 /* YDSelectedFile.swift in Sources */,
 				0F1248EA2199A5BB00F908A9 /* main.swift in Sources */,
 				0FF270A12199B09900A4A7FD /* YDStringKiller.swift in Sources */,
@@ -282,7 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7CA2E621C7B92100C552EE /* YDParseFile.swift in Sources */,
 				0F98E1D32192EEE700C330E4 /* YDSelectedFile.swift in Sources */,
+				0F7CA2E821C7E3DB00C552EE /* YDSearchModel.swift in Sources */,
 				0F1565D62191F068009D8033 /* YDMainVC.swift in Sources */,
 				0FF270A22199BE5700A4A7FD /* YDStringKiller.swift in Sources */,
 				0F1565D42191F068009D8033 /* YDAppDelegate.swift in Sources */,

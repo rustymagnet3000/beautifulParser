@@ -4,10 +4,7 @@ class YDMainViewController: NSViewController {
 
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var file_path_lbl: NSTextField!
-    let tableViewData = [
-        ["keyColumn":"waiting..","valueColumn":"for file"],
-        ["keyColumn":"waiting2..","valueColumn":"for file 2"],
-        ["keyColumn":"...","valueColumn":"..."]]
+    var tableViewData: [[String : String]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +28,21 @@ class YDMainViewController: NSViewController {
         panel.allowsMultipleSelection = false
         
         panel.beginSheetModal(for: window) { (result) in
-            print("user selected file")
-            
             if let a = panel.url {
-                guard let b = YDSelectedFile(file: a) else {
+                guard let logFile = YDSelectedFile(file: a) else {
                     self.file_path_lbl.stringValue = "❎ file not allowed"
                     return
                 }
-                self.file_path_lbl.stringValue = b.fileName
+                
+                self.file_path_lbl.stringValue = logFile.fileName
+                
+                if let a = YDParseFile(logFileUrl: logFile.fileURL){
+                    let b = a.ydEnumerateResults()
+                    self.tableViewData = a.ydEnumerateResults()
+                    print(b)
+                    self.tableView.reloadData()
+                }
+
             }
         }
     }

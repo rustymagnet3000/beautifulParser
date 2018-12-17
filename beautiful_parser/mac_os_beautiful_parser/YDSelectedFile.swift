@@ -11,11 +11,11 @@ class YDSelectedFile {
     let fileName: String 
     private let home: URL
     
-    convenience init? (fileString: String) {
+    convenience init? (file: URL) {
 
         let home = FileManager.default.homeDirectoryForCurrentUser
-        let file = home.appendingPathComponent(fileString)
-        
+//        let file = home.appendingPathComponent(fileString)
+//
         guard FileManager.default.fileExists(atPath: file.path),
                 FileManager.default.isReadableFile(atPath: file.path),
                     !FileManager.default.isExecutableFile(atPath: file.path) else {

@@ -13,7 +13,12 @@ struct YDSearchTerm: Codable {
         case searchPattern = "sp"
         case searchResult = "sr"
     }
-    func YDdescription() -> String {
+    func description() -> String {
         return searchPattern + "\t" + (searchResult ?? "not found")
+    }
+
+    func YDsingleRecord() -> [String: String] {
+
+        return ["keyColumn":searchPattern, "valueColumn":(searchResult ?? "not found")]
     }
 }
