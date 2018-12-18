@@ -37,12 +37,9 @@ class YDMainViewController: NSViewController {
                 self.file_path_lbl.stringValue = logFile.fileName
                 
                 if let a = YDParseFile(logFileUrl: logFile.fileURL){
-                    let b = a.ydEnumerateResults()
                     self.tableViewData = a.ydEnumerateResults()
-                    print(b)
                     self.tableView.reloadData()
                 }
-
             }
         }
     }

@@ -723,7 +723,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dgL-Hz-XU9">
                                 <rect key="frame" x="89" y="235" width="363" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="750" constant="359" id="vnz-ck-Rlb"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="359" id="vnz-ck-Rlb"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" title="&lt; choose file &gt;" id="6iM-AR-Owr">
                                     <font key="font" metaFont="system"/>
@@ -851,7 +851,7 @@
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="9mD-zU-8hL"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="9mD-zU-8hL"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -871,8 +871,9 @@
                             <constraint firstItem="tyh-xY-Kph" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="ca5-09-y05"/>
                             <constraint firstItem="VTy-NS-d9S" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="fLc-9E-OGg"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VTy-NS-d9S" secondAttribute="bottom" constant="30" id="grK-Zb-yPv"/>
+                            <constraint firstItem="VTy-NS-d9S" firstAttribute="top" secondItem="tyh-xY-Kph" secondAttribute="bottom" constant="33" id="lF2-ew-T6f"/>
                             <constraint firstAttribute="trailing" secondItem="dgL-Hz-XU9" secondAttribute="trailing" constant="30" id="lGx-df-BJ4"/>
-                            <constraint firstItem="VTy-NS-d9S" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="21" id="lc4-4M-dWQ"/>
+                            <constraint firstItem="VTy-NS-d9S" firstAttribute="centerY" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" priority="750" constant="21" id="lc4-4M-dWQ"/>
                             <constraint firstItem="VTy-NS-d9S" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="mhB-ve-PzX"/>
                         </constraints>
                     </view>

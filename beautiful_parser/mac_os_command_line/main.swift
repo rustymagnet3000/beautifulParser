@@ -1,16 +1,17 @@
 import Foundation
 
 do {
-    let log = "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt"
+    let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json"
     let home = FileManager.default.homeDirectoryForCurrentUser
-    let file = home.appendingPathComponent(log)
-    guard let logFile = YDSelectedFile(file: file) else {
-        throw YDError.LogFileFailed
+    let file = home.appendingPathComponent(searchTerms)
+    guard let stFile = YDSelectedFile(file: file) else {
+        throw YDError.SearchTermFileFailed
     }
-    
-    if let results = YDParseFile(logFileUrl: logFile.fileURL){
-        let a = results.ydEnumerateResults()
-        print(a)
+    /* Convert into the Search Term model */
+    let data: Data = try Data(contentsOf: stFile.fileURL)
+    let results: [YDSearchTerm] = try JSONDecoder().decode([YDSearchTerm].self, from: data)
+    for i in results {
+        print(i.searchDescription())
     }
     
     exit(EXIT_SUCCESS)
