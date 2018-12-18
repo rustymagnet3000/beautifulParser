@@ -24,3 +24,10 @@ extension Collection where Element: Equatable {
     }
 }
 
+extension String {
+    func condenseTrailingWhitespace() -> String {
+        return self.components(separatedBy: .whitespacesAndNewlines)
+            .filter { !$0.isEmpty }
+            .joined(separator: " ")
+    }
+}

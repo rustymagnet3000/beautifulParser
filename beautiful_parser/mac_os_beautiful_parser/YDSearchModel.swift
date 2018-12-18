@@ -18,8 +18,7 @@ struct YDSearchTerm: Codable {
         return searchPattern + "\t" + (searchName)
     }
 
-    mutating func YDsingleRecord() -> [String: String] {
-
-        return ["keyColumn":searchPattern, "valueColumn":(searchResult)]
+    mutating func singleRecord() -> [String: String] {
+        return ["keyColumn":searchName, "valueColumn":(searchResult)]
     }
 }

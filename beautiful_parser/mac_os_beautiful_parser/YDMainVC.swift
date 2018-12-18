@@ -13,11 +13,6 @@ class YDMainViewController: NSViewController {
         self.tableView.reloadData()
     }
 
-    override var representedObject: Any? {
-        didSet {
-
-        }
-    }
 
     @IBAction func find_file_btn(_ sender: Any) {
         guard let window = view.window else { return }
@@ -51,7 +46,7 @@ class YDMainViewController: NSViewController {
 }
 
 extension YDMainViewController:NSTableViewDataSource, NSTableViewDelegate{
-    
+
     fileprivate enum CellIdentifiers {
         static let keyCell = "keyColumn"
         static let valueCell = "valueColumn"

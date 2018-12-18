@@ -47,7 +47,7 @@ class YDParseFile {
                     matchesFound += 1
                 }
             }
-            printableResults.append(stResults[i].YDsingleRecord())
+            printableResults.append(stResults[i].singleRecord())
             
         }
         return printableResults

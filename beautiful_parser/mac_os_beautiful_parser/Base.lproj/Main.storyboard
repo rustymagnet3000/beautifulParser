@@ -712,6 +712,9 @@
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tyh-xY-Kph">
                                 <rect key="frame" x="27" y="226" width="62" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" priority="750" constant="80" id="uEh-fM-mKj"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5c2-Sb-SF4">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -867,12 +870,12 @@
                             <constraint firstItem="dgL-Hz-XU9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="4mX-rV-iIX"/>
                             <constraint firstAttribute="trailing" secondItem="VTy-NS-d9S" secondAttribute="trailing" constant="30" id="CAl-Ha-BRm"/>
                             <constraint firstItem="tyh-xY-Kph" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="33" id="HBf-ZA-dpT"/>
-                            <constraint firstItem="dgL-Hz-XU9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tyh-xY-Kph" secondAttribute="trailing" constant="8" symbolic="YES" id="P1Z-TT-yf1"/>
+                            <constraint firstItem="dgL-Hz-XU9" firstAttribute="leading" secondItem="tyh-xY-Kph" secondAttribute="trailing" constant="8" symbolic="YES" id="P1Z-TT-yf1"/>
                             <constraint firstItem="tyh-xY-Kph" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="ca5-09-y05"/>
                             <constraint firstItem="VTy-NS-d9S" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="fLc-9E-OGg"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VTy-NS-d9S" secondAttribute="bottom" constant="30" id="grK-Zb-yPv"/>
                             <constraint firstItem="VTy-NS-d9S" firstAttribute="top" secondItem="tyh-xY-Kph" secondAttribute="bottom" constant="33" id="lF2-ew-T6f"/>
-                            <constraint firstAttribute="trailing" secondItem="dgL-Hz-XU9" secondAttribute="trailing" constant="30" id="lGx-df-BJ4"/>
+                            <constraint firstAttribute="trailing" secondItem="dgL-Hz-XU9" secondAttribute="trailing" priority="750" constant="30" id="lGx-df-BJ4"/>
                             <constraint firstItem="VTy-NS-d9S" firstAttribute="centerY" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" priority="750" constant="21" id="lc4-4M-dWQ"/>
                             <constraint firstItem="VTy-NS-d9S" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="mhB-ve-PzX"/>
                         </constraints>
