@@ -1,20 +1,17 @@
 import Foundation
 
-let log = "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt"
-let home = FileManager.default.homeDirectoryForCurrentUser
-let file = home.appendingPathComponent(log)
-
 do {
-    
+
+    let log = "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt"
+    let home = FileManager.default.homeDirectoryForCurrentUser
+    let file = home.appendingPathComponent(log)
     guard let logFile = YDSelectedFile(file: file) else {
-        throw YDError.SearchTermFileFailed
+        throw YDError.LogFileFailed
     }
     
-    if let a = YDParseFile(logFileUrl: logFile.fileURL){
-        let b = a.ydEnumerateResults()
-        print(b)
+    if let results = YDParseAndCount(logFileUrl: logFile.fileURL){
+        results.returnAllRecords()
     }
-    
     
     exit(EXIT_SUCCESS)
 }

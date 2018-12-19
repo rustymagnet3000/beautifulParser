@@ -10,7 +10,7 @@ class YDParseFile {
     convenience init? (logFileUrl: URL) {
         
         do {
-            let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json"
+            let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms_count.json"
             let home = FileManager.default.homeDirectoryForCurrentUser
             let file = home.appendingPathComponent(searchTerms)
             guard let stFile = YDSelectedFile(file: file) else {

@@ -1,24 +1,34 @@
-struct YDSearchTerm: Codable {
+struct YDSearchTerm {
     
     var searchPattern: String
     var searchName: String
-    lazy var searchResult: String = "not found"
+    var searchResult: String = "not found"
     
     init(searchPattern: String, searchName: String) {
         self.searchPattern = searchPattern
         self.searchName = searchName
     }
     
-    enum CodingKeys: String, CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case searchPattern = "sp"
         case searchName = "sn"
     }
+  
     func searchDescription() -> String {
         return searchPattern + "\t" + (searchName)
     }
 
-    mutating func singleRecord() -> [String: String] {
+    func singleRecord() -> [String: String] {
         return ["keyColumn":searchName, "valueColumn":(searchResult)]
+    }
+}
+
+extension YDSearchTerm: Decodable
+{
+    init(from decoder: Decoder) throws
+    {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        searchPattern = try values.decode(String.self, forKey: .searchPattern)
+        searchName = try values.decode(String.self, forKey: .searchName)
     }
 }

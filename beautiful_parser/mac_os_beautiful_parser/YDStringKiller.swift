@@ -31,3 +31,13 @@ extension String {
             .joined(separator: " ")
     }
 }
+
+extension String {
+    func twoPrettyColumns(columnA: Int, columnB: Int) -> String {
+        let strArray: [String] = self.split(separators: " \t").compactMap { String($0) }
+        if strArray.isEmpty || columnA > strArray.count || columnB > strArray.count {
+            return self
+        }
+        return (strArray[columnA] + "\t" + strArray[columnB])
+    }
+}
