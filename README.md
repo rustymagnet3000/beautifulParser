@@ -10,6 +10,14 @@ The app is extendable, you can add specific items of interest, based on the effo
     {"sp": "guid_api", "API Key"}
 ]
 ```
+## Building Blocks
+There are 3 Objects that provide the foundation of the log parser.
+
+Search  | Search & Count |   YDSearch
+--|---|--
+json file | json file |  json file
+Add each search term  | Add each search term |  Point to file  
+1 : 1 results  | 1 : N results   |  -
 ## Planned improvements
 - Multi-threading, for parsing large files.
 - Persistence, to improve the user experience.
