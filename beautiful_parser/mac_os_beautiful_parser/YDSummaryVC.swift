@@ -24,7 +24,7 @@ class YDMainViewController: NSViewController {
         
         panel.beginSheetModal(for: window) { (result) in
             if let a = panel.url {
-                guard let logFile = YDSelectedFile(file: a) else {
+                guard let logFile = YDLogFile(logFile: a) else {
                     self.file_path_lbl.stringValue = "❎ file not allowed"
                     return
                 }

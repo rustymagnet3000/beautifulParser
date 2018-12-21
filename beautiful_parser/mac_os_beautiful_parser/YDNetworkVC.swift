@@ -4,25 +4,33 @@ class YDNetworkVC: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
 
-    var tableViewData: [[String : String]] = [["keyColumn":"whoop", "valueColumn":"whoop."]]
+    var tableViewData: [[String : String]] = [[:]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let log = "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt"
-        let home = FileManager.default.homeDirectoryForCurrentUser
-        let file = home.appendingPathComponent(log)
-        guard let logFile = YDSelectedFile(file: file) else {
-            return
-        }
-        if let results = YDParseAndCount(logFileUrl: logFile.fileURL){
-            results.returnAllRecords()
-        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+
+        do{
+            guard let a = YDLogFile.globalFile else {
+                throw YDError.LogFileFailed
+            }
+            guard let b = YDParseAndCount(logFileUrl: a, searchStr: searchString) else{
+                throw YDError.ParseFailed
+            }
+            tableViewData = b.returnAllRecords()
+            self.tableView.reloadData()
+        }
+        catch{
+            tableViewData = [["keyColumn":"select", "valueColumn":"log file"]]
+            self.tableView.reloadData()
+        }
     }
 }
-
 
 
 extension YDNetworkVC:NSTableViewDataSource, NSTableViewDelegate{

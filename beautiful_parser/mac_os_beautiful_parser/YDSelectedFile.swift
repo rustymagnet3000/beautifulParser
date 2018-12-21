@@ -1,33 +1,30 @@
 import Foundation
 
-public enum YDError: Error {
-    case LogFileFailed
-    case SearchTermFileFailed
-}
 
 class YDSelectedFile {
 
     var fileURL: URL
-    let fileName: String 
-    private let home: URL
-    
-    convenience init? (file: URL) {
+    let fileName: String
+    static var globalFile: URL? = nil
 
-        let home = FileManager.default.homeDirectoryForCurrentUser
-//        let file = home.appendingPathComponent(fileString)
-//
+    convenience init?(file: URL) {
         guard FileManager.default.fileExists(atPath: file.path),
                 FileManager.default.isReadableFile(atPath: file.path),
                     !FileManager.default.isExecutableFile(atPath: file.path) else {
             return nil
         }
-        
-        self.init(fileURL: file, fileName: file.lastPathComponent, home: home)
+        self.init(fileURL: file, fileName: file.lastPathComponent)
     }
     
-    private init?(fileURL: URL, fileName: String, home: URL) {
+    init?(fileURL: URL, fileName: String) {
         self.fileURL = fileURL
         self.fileName = fileName
-        self.home = home
+    }
+}
+
+class YDLogFile: YDSelectedFile {
+    init?(logFile: URL) {
+        super.init(fileURL: logFile, fileName: logFile.lastPathComponent)
+        YDSelectedFile.globalFile = super.fileURL
     }
 }

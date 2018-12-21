@@ -13,6 +13,14 @@ class YDStringKiller {
         guard let lastWord = words.last else { return "default" }
         return String(lastWord)
     }
+    
+    static func twoPrettyColumns(logLine: String, columnA: Int, columnB: Int) -> [String: String] {
+        let strArray: [String] = logLine.split(separators: " \t").compactMap { String($0) }
+        if strArray.isEmpty || columnA > strArray.count || columnB > strArray.count {
+            return ["keyColumn":"column", "valueColumn":"error"]
+        }
+        return ["keyColumn":strArray[columnA], "valueColumn":(strArray[columnB])]
+    }
 
 }
 
@@ -29,15 +37,5 @@ extension String {
         return self.components(separatedBy: .whitespacesAndNewlines)
             .filter { !$0.isEmpty }
             .joined(separator: " ")
-    }
-}
-
-extension String {
-    func twoPrettyColumns(columnA: Int, columnB: Int) -> String {
-        let strArray: [String] = self.split(separators: " \t").compactMap { String($0) }
-        if strArray.isEmpty || columnA > strArray.count || columnB > strArray.count {
-            return self
-        }
-        return (strArray[columnA] + "\t" + strArray[columnB])
     }
 }
