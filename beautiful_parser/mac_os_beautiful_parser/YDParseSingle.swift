@@ -25,6 +25,7 @@ class YDParseAndCount {
         for (_, c) in logsByLine.enumerated() {
             if (YDStringKiller.findSubstring(str: String(c), substring: stResult.searchPattern) == true)
             {
+                // TODO: Count max columns in String(c) to avoid crash.
                 let x: [String : String] = YDStringKiller.twoPrettyColumns(logLine: String(c), columnA: 1, columnB: 11)
                     stResult.result.append(x)
             }

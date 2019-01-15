@@ -15,9 +15,14 @@ class YDStringKiller {
     }
     
     static func twoPrettyColumns(logLine: String, columnA: Int, columnB: Int) -> [String: String] {
+        
         let strArray: [String] = logLine.split(separators: " \t").compactMap { String($0) }
         if strArray.isEmpty || columnA > strArray.count || columnB > strArray.count {
             return ["keyColumn":"column", "valueColumn":"error"]
+        }
+        let a = strArray.endIndex
+        if a <= columnB {
+            return ["keyColumn":strArray[columnA], "valueColumn":(strArray.last ?? "not found")]
         }
         return ["keyColumn":strArray[columnA], "valueColumn":(strArray[columnB])]
     }
