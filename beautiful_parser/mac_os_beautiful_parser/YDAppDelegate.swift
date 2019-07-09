@@ -4,7 +4,8 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        // root view controller to set the TabBarController
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

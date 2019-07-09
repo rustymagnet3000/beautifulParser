@@ -9,7 +9,7 @@ do {
         throw YDError.LogFileFailed
     }
     
-    if let results = YDParseAndCount(logFileUrl: logFile.fileURL){
+    if let results = YDParseAndCount(logFileUrl: logFile.fileURL, searchStr: <#String#>){
         results.returnAllRecords()
     }
     

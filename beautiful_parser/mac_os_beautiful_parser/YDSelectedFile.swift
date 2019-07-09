@@ -1,6 +1,5 @@
 import Foundation
 
-
 class YDSelectedFile {
 
     var fileURL: URL
