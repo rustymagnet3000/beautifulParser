@@ -3,6 +3,8 @@ import Cocoa
 class YDMainViewController: NSViewController {
 
     @IBOutlet weak var run_btn_outlet: NSButton!
+    @IBOutlet weak var file_btn_outlet: NSButton!
+    
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var file_path_lbl: NSTextField!
     
@@ -11,10 +13,22 @@ class YDMainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        run_btn_outlet.isHidden = true
+        
+        run_btn_outlet.YDButtonStyle()
+        file_btn_outlet.YDButtonStyle()
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.reloadData()
+        
+        logFile = YDPersistSettings.selectedFile()
+        if logFile != nil {
+                    file_path_lbl.stringValue = logFile!.fileName
+                    run_btn_outlet.isHidden = false
+        }
+        else {
+                run_btn_outlet.isHidden = true
+        }
     }
     
     @IBAction func run_btn(_ sender: Any) {
@@ -27,13 +41,13 @@ class YDMainViewController: NSViewController {
         
         DispatchQueue.global(qos: .userInitiated).async {
             
-            if let logs = self.logFile {
+            if let logs: YDLogFile = self.logFile {
                 if let a = YDParseFile(logFileUrl: logs.fileURL){
                     self.tableViewData = a.ydEnumerateResults()
                 }
             }
             
-                // Go back to the main thread to update the UI
+                // Go back to the main thread to update the tableView
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     return
@@ -61,7 +75,7 @@ class YDMainViewController: NSViewController {
         panel.beginSheetModal(for: window) { (result) in
             
             if let a = panel.url {
-                self.logFile = YDLogFile(logFile: a)
+                self.logFile = YDLogFile(file: a)
             }
             
             if let b = self.logFile {
@@ -69,6 +83,8 @@ class YDMainViewController: NSViewController {
                 if self.run_btn_outlet.isHidden {
                     self.run_btn_outlet.isHidden = false
                 }
+                
+                UserDefaults.standard.set(b.fileURL.absoluteString, forKey: "YDSelectedFile")
                 return
             }
             

@@ -25,11 +25,6 @@
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                                        <menuItem title="Services" id="NMo-om-nkz">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                                         <menuItem title="Hide beautiful_parser" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
@@ -78,7 +73,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="254" y="14"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -99,7 +94,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="253" y="305"/>
         </scene>
         <!--Summary-->
         <scene sceneID="hIz-AP-VOD">
@@ -284,6 +279,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="file_btn_outlet" destination="tyh-xY-Kph" id="5Bc-9m-MAj"/>
                         <outlet property="file_path_lbl" destination="dgL-Hz-XU9" id="4W7-Cb-SzR"/>
                         <outlet property="run_btn_outlet" destination="GHl-N2-UOq" id="Qf6-zV-0s9"/>
                         <outlet property="tableView" destination="b4A-27-RL8" id="Q2q-QE-dZN"/>
@@ -319,7 +315,7 @@
                 </tabViewController>
                 <customObject id="aHH-Xe-2aD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="697"/>
+            <point key="canvasLocation" x="253" y="762"/>
         </scene>
         <!--APIs-->
         <scene sceneID="jQd-oo-7Jf">
@@ -332,7 +328,7 @@
                 </viewController>
                 <customObject id="eGA-gZ-ZSG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="480"/>
+            <point key="canvasLocation" x="856" y="762"/>
         </scene>
         <!--Network-->
         <scene sceneID="JlM-7u-e3a">
@@ -460,7 +456,7 @@
                 </viewController>
                 <customObject id="EpP-Lm-0or" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="852"/>
+            <point key="canvasLocation" x="850" y="1217"/>
         </scene>
     </scenes>
 </document>

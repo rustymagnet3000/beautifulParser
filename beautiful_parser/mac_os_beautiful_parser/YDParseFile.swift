@@ -13,7 +13,7 @@ class YDParseFile {
             let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json"
             let home = FileManager.default.homeDirectoryForCurrentUser
             let file = home.appendingPathComponent(searchTerms)
-            guard let stFile = YDSelectedFile(file: file) else {
+            guard let stFile = YDLogFile(file: file) else {
                 throw YDError.SearchTermFileFailed
             }
             /* Convert into the Search Term model */
