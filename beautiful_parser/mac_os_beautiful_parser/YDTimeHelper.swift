@@ -26,6 +26,6 @@ class YD_Time_Helper {
             return "error"
         }
         
-        return "🔥 ⏰ " + String(time_taken / 1000) + " Time taken"
+        return "⏰ " + String(time_taken / 1000) + " time taken"
     }
 }

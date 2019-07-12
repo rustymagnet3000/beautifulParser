@@ -260,9 +260,19 @@
                                     <action selector="run_btn:" target="XfG-lQ-9wD" id="lwr-Gg-JU1"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ueq-di-Xxh">
+                                <rect key="frame" x="389" y="5" width="63" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="time label" id="gqd-7N-1wV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="ueq-di-Xxh" firstAttribute="trailing" secondItem="VTy-NS-d9S" secondAttribute="trailing" id="2hf-TQ-W97"/>
                             <constraint firstItem="dgL-Hz-XU9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="4mX-rV-iIX"/>
+                            <constraint firstItem="ueq-di-Xxh" firstAttribute="top" secondItem="VTy-NS-d9S" secondAttribute="bottom" constant="8" symbolic="YES" id="6TY-iB-Vbp"/>
                             <constraint firstAttribute="trailing" secondItem="VTy-NS-d9S" secondAttribute="trailing" constant="30" id="CAl-Ha-BRm"/>
                             <constraint firstItem="tyh-xY-Kph" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="33" id="HBf-ZA-dpT"/>
                             <constraint firstItem="GHl-N2-UOq" firstAttribute="centerY" secondItem="tyh-xY-Kph" secondAttribute="centerY" id="MLp-AK-jX8"/>
@@ -283,11 +293,12 @@
                         <outlet property="file_path_lbl" destination="dgL-Hz-XU9" id="4W7-Cb-SzR"/>
                         <outlet property="run_btn_outlet" destination="GHl-N2-UOq" id="Qf6-zV-0s9"/>
                         <outlet property="tableView" destination="b4A-27-RL8" id="Q2q-QE-dZN"/>
+                        <outlet property="time_lbl" destination="ueq-di-Xxh" id="Fnj-k5-0v7"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253" y="1204"/>
+            <point key="canvasLocation" x="253" y="1203.5"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="aKN-xe-xzh">

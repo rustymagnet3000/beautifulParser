@@ -2,7 +2,7 @@ import Foundation
 
 class YDParseFile {
     
-    var stResults: [YDSearchTerm]
+    var stResults: [YDSearchModel]
     let logsByLine: [String.SubSequence]
     lazy var matchesFound: Int = 0
     lazy var printableResults: [[String : String]] = []
@@ -18,7 +18,7 @@ class YDParseFile {
             }
             /* Convert into the Search Term model */
             let data: Data = try Data(contentsOf: stFile.fileURL)
-            let results: [YDSearchTerm] = try JSONDecoder().decode([YDSearchTerm].self, from: data)
+            let results: [YDSearchModel] = try JSONDecoder().decode([YDSearchModel].self, from: data)
             
             /* Split log file into large String and chop by separator */
             let logStrs: String = try String(contentsOf: logFileUrl, encoding: String.Encoding.utf8)
@@ -30,7 +30,7 @@ class YDParseFile {
         }
     }
         
-    private init?(stResults: [YDSearchTerm], logsByLine: [String.SubSequence]) {
+    private init?(stResults: [YDSearchModel], logsByLine: [String.SubSequence]) {
             self.stResults = stResults
             self.logsByLine = logsByLine
     }

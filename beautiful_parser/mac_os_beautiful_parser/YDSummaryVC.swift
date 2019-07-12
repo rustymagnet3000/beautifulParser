@@ -5,6 +5,7 @@ class YDMainViewController: NSViewController {
     @IBOutlet weak var run_btn_outlet: NSButton!
     @IBOutlet weak var file_btn_outlet: NSButton!
     
+    @IBOutlet weak var time_lbl: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var file_path_lbl: NSTextField!
     
@@ -59,9 +60,8 @@ class YDMainViewController: NSViewController {
         group.notify(queue: .main) {
             let end_time = YD_Time_Helper(raw_date: Date())
             let total_time = YD_Time_Helper.start_minus_finish_epoch(start_time_epoch: start_time.epoch_time, end_time_epoch: end_time.epoch_time)
-            print(total_time)
+            self.time_lbl.stringValue = total_time
         }
-
     }
     
     @IBAction func find_file_btn(_ sender: Any) {
