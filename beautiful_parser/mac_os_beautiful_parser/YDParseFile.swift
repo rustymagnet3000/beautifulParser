@@ -41,9 +41,14 @@ class YDParseFile {
             
             /* Read log file for each search term */
             for (_, c) in logsByLine.enumerated() {
-                if (YDStringKiller.findSubstring(str: String(c), substring: stResults[i].searchPattern) == true)
+                if (YDStringHelpers.findSubstring(str: String(c), substring: stResults[i].searchPattern) == true)
                 {
-                    stResults[i].searchResult = YDStringKiller.lastWord(in: String(c))
+                    if let cut = stResults[i].cutColumns { // deals  nil / incorrect values
+                        stResults[i].searchResult = String(c).lastColumns(n: cut)
+                    } else {
+                        stResults[i].searchResult = String(c).lastColumns(n: 1)
+                    }
+                    
                     matchesFound += 1
                 }
             }

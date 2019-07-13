@@ -6,8 +6,8 @@ The app was designed to be extendable; you could add specific items of interest.
 ## Example Search Term file
 ```
 [
-    {"sp": "app version", "App Version"},  
-    {"sp": "guid_api", "API Key"}
+    {"searchPattern": "FoO", "searchName": "Foo","cutColumns": 5},
+    {"searchPattern": "b&r", "searchName": "Bar"}
 ]
 ```
 ## Building Blocks
@@ -18,9 +18,12 @@ Search  | Search & Count |   YDSearch
 json file | json file |  json file
 Add each search term  | Add each search term |  Point to file  
 1 : 1 results  | 1 : N results   |  -
-  |   |  
+
 
 ## Planned improvements
+- Change Search Model to include a "count"
+- Dynamically add a TabBar
+- Change Search Model to allow you to override what is found in the logs with a nicer to read message
 - ~Multi-threaded, for parsing large files.~
 - ~Persistent file names, to improve the user experience.~
 - Add Spinner to block activity while parsing.

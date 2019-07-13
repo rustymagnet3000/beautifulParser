@@ -1,17 +1,11 @@
 
-class YDStringKiller {
-    // case sensitive
-    static func findSubstring(str: String, substring: String) -> Bool {
+class YDStringHelpers {
+    
+    static func findSubstring(str: String, substring: String) -> Bool { // case sensitive
         if str.range(of:substring) != nil {
             return true
         }
         return false
-    }
-    
-    static func lastWord(in input: String) -> String {
-        let words = input.split(separators: [" "])
-        guard let lastWord = words.last else { return "default" }
-        return String(lastWord)
     }
     
     static func twoPrettyColumns(logLine: String, columnA: Int, columnB: Int) -> [String: String] {
@@ -42,5 +36,20 @@ extension String {
         return self.components(separatedBy: .whitespacesAndNewlines)
             .filter { !$0.isEmpty }
             .joined(separator: " ")
+    }
+    
+    func lastColumns(n: Int) -> String {
+        var columns = self.split(separator: " ")
+        var returnStr: String = ""
+        
+        guard columns.count > 0 && n > 0 else {
+            return "zero column error"
+        }
+        
+        columns.reverse()
+        for i in 0..<n {
+            returnStr = (columns[i]) + " " + returnStr
+        }
+        return returnStr
     }
 }

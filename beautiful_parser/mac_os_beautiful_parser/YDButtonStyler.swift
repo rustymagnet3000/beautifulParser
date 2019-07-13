@@ -1,7 +1,6 @@
 import Cocoa
 
 
-
 extension NSButton {
     func YDButtonStyle() {
         self.bezelStyle = .roundRect

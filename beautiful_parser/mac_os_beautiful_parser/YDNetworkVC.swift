@@ -8,20 +8,17 @@ class YDNetworkVC: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
 
+        
         do{
-            guard let a = YDLogFile.globalFile else {
+            guard let logFile = YDPersistSettings.selectedFile() else {
                 throw YDError.LogFileFailed
             }
-            guard let b = YDParseAndCount(logFileUrl: a, searchStr: searchString) else{
+            
+            guard let b = YDParseAndCount(logFileUrl: logFile.fileURL, searchStr: searchString) else{
                 throw YDError.ParseFailed
             }
+            
             tableViewData = b.returnAllRecords()
             self.tableView.reloadData()
         }
@@ -29,7 +26,12 @@ class YDNetworkVC: NSViewController {
             tableViewData = [["keyColumn":"select", "valueColumn":"log file"]]
             self.tableView.reloadData()
         }
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
+    
+
 }
 
 

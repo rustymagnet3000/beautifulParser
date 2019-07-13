@@ -14,7 +14,7 @@ do {
         guard let stFile = YDLogFile(file: file) else {
             throw YDError.SearchTermFileFailed
         }
-        /* Convert into the Search Term model */
+    
         let data: Data = try Data(contentsOf: stFile.fileURL)
         let results: [YDSearchModel] = try JSONDecoder().decode([YDSearchModel].self, from: data)
     
