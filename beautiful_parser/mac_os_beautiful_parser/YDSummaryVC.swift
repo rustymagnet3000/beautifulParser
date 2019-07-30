@@ -33,9 +33,23 @@ class YDMainViewController: NSViewController {
     }
     
     @IBAction func run_btn(_ sender: Any) {
-        
-        // TODO: Add spinner
+        // TODO: [+] move to [YDTabsModel]
         let start_time = YD_Time_Helper(raw_date: Date())
+        let tabs = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_tabs.json"
+        let home = FileManager.default.homeDirectoryForCurrentUser
+        let file = home.appendingPathComponent(tabs)
+        let singleTab: YDTabsModel
+        var tabResults: YDParseAndCount?
+        let tabvc = YDtabvc(nibName: YDNibIdentifier.ydtabvc, bundle: nil)
+        
+        do {
+            let data: Data = try Data(contentsOf: file)
+            singleTab = try JSONDecoder().decode(YDTabsModel.self, from: data)
+        }
+        catch {
+            print("🕵🏼‍♂️ catch block")
+            return
+        }
 
         let group = DispatchGroup()
         group.enter()
@@ -46,11 +60,29 @@ class YDMainViewController: NSViewController {
                 if let a = YDParseFile(logFileUrl: logs.fileURL){
                     self.tableViewData = a.ydEnumerateResults()
                 }
+
+                tabResults = YDParseAndCount(logFileUrl: logs.fileURL, searchStr: singleTab.searchPattern)
+                
+                if tabResults != nil {
+                    var nTabResults: [YDResultsModel] = []
+                    
+                    
+                    nTabResults.append(singleTab.prettyResultsForTableColumns())
+                    
+                    for i in nTabResults {
+                        let vc = YDplainVC(nibName: YDNibIdentifier.ydplainvc, bundle: nil)
+                        vc.tableViewData = i.logs
+                        let tabbaritem = NSTabViewItem.init(viewController: vc)
+                        tabbaritem.label = i.title
+                        tabvc.addTabViewItem(tabbaritem)
+                    }
+                    
+                }
             }
             
-                // Go back to the main thread to update the tableView
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.presentAsModalWindow(tabvc)
                     return
                 }
             }
@@ -58,9 +90,11 @@ class YDMainViewController: NSViewController {
         group.leave()
 
         group.notify(queue: .main) {
+ 
             let end_time = YD_Time_Helper(raw_date: Date())
             let total_time = YD_Time_Helper.start_minus_finish_epoch(start_time_epoch: start_time.epoch_time, end_time_epoch: end_time.epoch_time)
             self.time_lbl.stringValue = total_time
+            
         }
     }
     

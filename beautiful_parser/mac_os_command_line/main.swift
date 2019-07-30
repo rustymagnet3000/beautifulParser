@@ -1,28 +1,19 @@
 import Foundation
 
 do {
-        let log = "Coding/beautifulParser/beautiful_parser/not_on_repo/logs.txt"
+        let tabs = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_tabs.json"
         let home = FileManager.default.homeDirectoryForCurrentUser
-        var file = home.appendingPathComponent(log)
-        guard let origLogFile = YDLogFile(file: file) else {
-            throw YDError.LogFileFailed
-        }
-    
-        let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json"
-        file = home.appendingPathComponent(searchTerms)
+        let file = home.appendingPathComponent(tabs)
 
-        guard let stFile = YDLogFile(file: file) else {
-            throw YDError.SearchTermFileFailed
-        }
-    
-        let data: Data = try Data(contentsOf: stFile.fileURL)
-        let results: [YDSearchModel] = try JSONDecoder().decode([YDSearchModel].self, from: data)
-    
+
+        let data: Data = try Data(contentsOf: file)
+        let results: [YDTabsModel] = try JSONDecoder().decode([YDTabsModel].self, from: data)
+
         for i in results {
-                print(i.searchDescription())
+                print(i.prettyDescription())
         }
     exit(EXIT_SUCCESS)
 }
 catch {
-    print(error.localizedDescription)
+    print("+] caught:\(error.localizedDescription)")
 }

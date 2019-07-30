@@ -1,5 +1,47 @@
 import Foundation
 
+class YDSingleSearch {
+    
+    var searchPattern: String
+    lazy var result: [[String: String]] = []
+    
+    init(searchPattern: String) {
+        self.searchPattern = searchPattern
+    }
+    
+    func allResults() -> [[String: String]] {
+        return result
+    }
+}
+
+struct YDTabsModel: Decodable {
+    var tabName: String
+    var searchPattern: String
+    lazy var result: KeyValuePairs<Int, String> = [:]
+    
+    func prettyDescription() -> String {
+        return "\t[+] " + tabName
+    }
+    
+    func prettyResultsForTableColumns() -> YDResultsModel {
+        return YDResultsModel(title: "scary", logs: [11: "Camel",
+                                                      12: "Wolf",
+                                                      13: "Giant Huntsmen",
+                                                      1: "Harvestman",
+                                                      14: "Daddy Long Legs",
+                                                      22: "Inchy Wincy",
+                                                      21: "Brasilian Wandering",
+                                                      15: "Daddy Long Legs",
+                                                      21: "Inchy Wincy",
+                                                      20: "Brasilian Wandering",
+                                                      13: "Shelob",
+                                                      21: "Funnel Web"])
+    }
+}
+
+
+
+
 class YDParseAndCount {
     
     var stResult: YDSingleSearch
