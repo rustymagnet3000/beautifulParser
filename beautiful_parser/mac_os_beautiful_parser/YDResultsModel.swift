@@ -1,12 +1,20 @@
 import Foundation
 
-struct YDResultsModel {
+struct YDSpidersFearFactor {
+    var elements: [(Int, String)]
+    
+    init(_ elements: KeyValuePairs<Int, String>) {
+        self.elements = Array(elements)
+    }
+}
+
+struct YDTabModel {
     
     let title: String
-    let logs: KeyValuePairs<Int, String>
-
-    init(title: String, logs: KeyValuePairs<Int, String>) {
+    let results: YDSpidersFearFactor
+    
+    init(title: String, results: YDSpidersFearFactor) {
         self.title = title
-        self.logs = logs
+        self.results = results
     }
 }

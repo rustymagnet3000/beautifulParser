@@ -4,8 +4,8 @@ class YDplainVC: NSViewController {
 
     @IBOutlet weak var tableOutlet: NSTableView!
     var customTitle: String = "Spiders"
-    var tableViewData: KeyValuePairs<Int, String> = [:]
-
+    var tableViewData: YDSpidersFearFactor = YDSpidersFearFactor([:])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = customTitle
@@ -23,7 +23,7 @@ extension YDplainVC: NSTableViewDataSource, NSTableViewDelegate {
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return tableViewData.count
+        return tableViewData.elements.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -33,11 +33,11 @@ extension YDplainVC: NSTableViewDataSource, NSTableViewDelegate {
         
         if tableColumn == tableView.tableColumns[0] {
             cellIdentifier = CellIdentifiers.keyCell
-            cellText = String(tableViewData[row].key)
+            cellText = String(tableViewData.elements[row].0)
         }
         else if tableColumn == tableView.tableColumns[1] {
             cellIdentifier = CellIdentifiers.valueCell
-            cellText = String(tableViewData[row].value)
+            cellText = String(tableViewData.elements[row].1)
         }
 
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {

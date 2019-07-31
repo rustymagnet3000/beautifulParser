@@ -1,6 +1,6 @@
 import Cocoa
 
-class YDMainViewController: NSViewController {
+class YDSummaryController: NSViewController {
 
     @IBOutlet weak var run_btn_outlet: NSButton!
     @IBOutlet weak var file_btn_outlet: NSButton!
@@ -23,6 +23,7 @@ class YDMainViewController: NSViewController {
         self.tableView.reloadData()
         
         logFile = YDPersistSettings.selectedFile()
+        
         if logFile != nil {
                     file_path_lbl.stringValue = logFile!.fileName
                     run_btn_outlet.isHidden = false
@@ -33,13 +34,12 @@ class YDMainViewController: NSViewController {
     }
     
     @IBAction func run_btn(_ sender: Any) {
-        // TODO: [+] move to [YDTabsModel]
         let start_time = YD_Time_Helper(raw_date: Date())
         let tabs = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_tabs.json"
         let home = FileManager.default.homeDirectoryForCurrentUser
         let file = home.appendingPathComponent(tabs)
         let singleTab: YDTabsModel
-        var tabResults: YDParseAndCount?
+        var parseAndCount: YDParseAndCount?
         let tabvc = YDtabvc(nibName: YDNibIdentifier.ydtabvc, bundle: nil)
         
         do {
@@ -50,7 +50,7 @@ class YDMainViewController: NSViewController {
             print("🕵🏼‍♂️ catch block")
             return
         }
-
+       
         let group = DispatchGroup()
         group.enter()
         
@@ -60,18 +60,18 @@ class YDMainViewController: NSViewController {
                 if let a = YDParseFile(logFileUrl: logs.fileURL){
                     self.tableViewData = a.ydEnumerateResults()
                 }
-
-                tabResults = YDParseAndCount(logFileUrl: logs.fileURL, searchStr: singleTab.searchPattern)
                 
-                if tabResults != nil {
-                    var nTabResults: [YDResultsModel] = []
-                    
-                    
-                    nTabResults.append(singleTab.prettyResultsForTableColumns())
+                parseAndCount = YDParseAndCount(logFileUrl: logs.fileURL, searchStr: singleTab.searchPattern)
+                
+                if let parsed = parseAndCount {
+                    var nTabResults: [YDTabModel] = []
+                    let tabA = YDTabModel(title: "scary", results: parsed.results)
+                    nTabResults.append(tabA)
                     
                     for i in nTabResults {
                         let vc = YDplainVC(nibName: YDNibIdentifier.ydplainvc, bundle: nil)
-                        vc.tableViewData = i.logs
+                        vc.tableViewData = i.results
+
                         let tabbaritem = NSTabViewItem.init(viewController: vc)
                         tabbaritem.label = i.title
                         tabvc.addTabViewItem(tabbaritem)
@@ -80,21 +80,20 @@ class YDMainViewController: NSViewController {
                 }
             }
             
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.presentAsModalWindow(tabvc)
-                    return
-                }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.presentAsModalWindow(tabvc)
+                return
             }
+        }
         
         group.leave()
-
         group.notify(queue: .main) {
- 
+            self.tableView.reloadData()
             let end_time = YD_Time_Helper(raw_date: Date())
             let total_time = YD_Time_Helper.start_minus_finish_epoch(start_time_epoch: start_time.epoch_time, end_time_epoch: end_time.epoch_time)
             self.time_lbl.stringValue = total_time
-            
+
         }
     }
     
@@ -133,7 +132,7 @@ class YDMainViewController: NSViewController {
     }
 }
 
-extension YDMainViewController:NSTableViewDataSource, NSTableViewDelegate{
+extension YDSummaryController:NSTableViewDataSource, NSTableViewDelegate{
 
     fileprivate enum CellIdentifiers {
         static let keyCell = "keyColumn"
