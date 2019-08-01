@@ -38,13 +38,12 @@ class YDSummaryController: NSViewController {
         let tabs = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_tabs.json"
         let home = FileManager.default.homeDirectoryForCurrentUser
         let file = home.appendingPathComponent(tabs)
-        let singleTab: YDTabsModel
-        var parseAndCount: YDParseAndCount?
+        let multipleTabs: [YDTabsModel]
         let tabvc = YDtabvc(nibName: YDNibIdentifier.ydtabvc, bundle: nil)
         
         do {
             let data: Data = try Data(contentsOf: file)
-            singleTab = try JSONDecoder().decode(YDTabsModel.self, from: data)
+            multipleTabs = try JSONDecoder().decode([YDTabsModel].self, from: data)
         }
         catch {
             print("🕵🏼‍♂️ catch block")
@@ -61,22 +60,24 @@ class YDSummaryController: NSViewController {
                     self.tableViewData = a.ydEnumerateResults()
                 }
                 
-                parseAndCount = YDParseAndCount(logFileUrl: logs.fileURL, searchStr: singleTab.searchPattern)
-                
-                if let parsed = parseAndCount {
-                    var nTabResults: [YDTabModel] = []
-                    let tabA = YDTabModel(title: "scary", results: parsed.results)
-                    nTabResults.append(tabA)
-                    
-                    for i in nTabResults {
-                        let vc = YDplainVC(nibName: YDNibIdentifier.ydplainvc, bundle: nil)
-                        vc.tableViewData = i.results
+                for i in multipleTabs {
 
-                        let tabbaritem = NSTabViewItem.init(viewController: vc)
-                        tabbaritem.label = i.title
-                        tabvc.addTabViewItem(tabbaritem)
+                    if let parsed = YDParseAndCount(logFileUrl: logs.fileURL, searchStr: i.searchPattern) {
+                        var nTabResults: [YDTabModel] = []
+                        let tab = YDTabModel(title: i.tabName, results: parsed.results)
+                        nTabResults.append(tab)
+                        
+                        for i in nTabResults {
+                            let vc = YDplainVC(nibName: YDNibIdentifier.ydplainvc, bundle: nil)
+                            vc.tableViewData = i.results
+                            
+                            let tabbaritem = NSTabViewItem.init(viewController: vc)
+                            tabbaritem.label = i.title
+                            tabvc.addTabViewItem(tabbaritem)
+                        }
+                        
                     }
-                    
+
                 }
             }
             
@@ -127,7 +128,7 @@ class YDSummaryController: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.title = "🐝 Bee Parser 🐝"
+        self.view.window?.title = YDStaticStrings.ydWindowTitle
         
     }
 }

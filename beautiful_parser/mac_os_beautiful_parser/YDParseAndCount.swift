@@ -3,10 +3,7 @@ import Foundation
 struct YDTabsModel: Decodable {
     var tabName: String
     var searchPattern: String
-    
-    func prettyDescription() -> String {
-        return "\t[+] " + tabName
-    }
+    var cutColumns: Int?
 }
 
 class YDParseAndCount {
@@ -33,6 +30,7 @@ class YDParseAndCount {
         for (i, c) in logsByLine.enumerated() {
             if (YDStringHelpers.findSubstring(str: String(c), substring: searchPattern) == true)
             {
+                
                 let x = String(c).lastColumns(n: 1)
                 results.elements.append((Int(i), x))
             }

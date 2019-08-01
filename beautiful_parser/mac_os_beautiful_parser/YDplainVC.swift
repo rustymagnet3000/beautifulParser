@@ -3,12 +3,12 @@ import Cocoa
 class YDplainVC: NSViewController {
 
     @IBOutlet weak var tableOutlet: NSTableView!
-    var customTitle: String = "Spiders"
+
     var tableViewData: YDSpidersFearFactor = YDSpidersFearFactor([:])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = customTitle
+        self.title = YDStaticStrings.ydPlainVCTitle
         tableOutlet.usesAlternatingRowBackgroundColors = true
         tableOutlet.delegate = self
         tableOutlet.dataSource = self
