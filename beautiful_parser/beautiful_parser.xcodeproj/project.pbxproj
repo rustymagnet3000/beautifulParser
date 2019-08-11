@@ -19,9 +19,9 @@
 		0F7CA2E621C7B92100C552EE /* YDParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7CA2E521C7B92100C552EE /* YDParseFile.swift */; };
 		0F7E495822D5F8EB0010F052 /* YDButtonStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495722D5F8EB0010F052 /* YDButtonStyler.swift */; };
 		0F7E495A22D644710010F052 /* YDPersistSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495922D644710010F052 /* YDPersistSettings.swift */; };
-		0F7E495C22D760730010F052 /* YDSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495B22D760730010F052 /* YDSearchModel.swift */; };
-		0F7E495D22D760730010F052 /* YDSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495B22D760730010F052 /* YDSearchModel.swift */; };
-		0F7E495E22D760730010F052 /* YDSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495B22D760730010F052 /* YDSearchModel.swift */; };
+		0F7E495C22D760730010F052 /* YDSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495B22D760730010F052 /* YDSummaryModel.swift */; };
+		0F7E495D22D760730010F052 /* YDSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495B22D760730010F052 /* YDSummaryModel.swift */; };
+		0F7E495E22D760730010F052 /* YDSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E495B22D760730010F052 /* YDSummaryModel.swift */; };
 		0F7EA43022D856E400B0542D /* YDParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7CA2E521C7B92100C552EE /* YDParseFile.swift */; };
 		0F975D1923002E7500AD4698 /* YDResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA12EA722EF068400CC0B54 /* YDResultsModel.swift */; };
 		0F975D1B23002F7900AD4698 /* stub_data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F975D1A23002F7900AD4698 /* stub_data.swift */; };
@@ -87,7 +87,7 @@
 		0F7CA2E921C80FC000C552EE /* logs.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = logs.txt; sourceTree = "<group>"; };
 		0F7E495722D5F8EB0010F052 /* YDButtonStyler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDButtonStyler.swift; sourceTree = "<group>"; };
 		0F7E495922D644710010F052 /* YDPersistSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDPersistSettings.swift; sourceTree = "<group>"; };
-		0F7E495B22D760730010F052 /* YDSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDSearchModel.swift; sourceTree = "<group>"; };
+		0F7E495B22D760730010F052 /* YDSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDSummaryModel.swift; sourceTree = "<group>"; };
 		0F975D1A23002F7900AD4698 /* stub_data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stub_data.swift; sourceTree = "<group>"; };
 		0F98E1D22192EEE700C330E4 /* YDSelectedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDSelectedFile.swift; sourceTree = "<group>"; };
 		0FA12EA322EF067400CC0B54 /* YDtabvc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YDtabvc.xib; sourceTree = "<group>"; };
@@ -160,14 +160,14 @@
 		0F1565D22191F068009D8033 /* mac_os_beautiful_parser */ = {
 			isa = PBXGroup;
 			children = (
+				0F1565D32191F068009D8033 /* YDAppDelegate.swift */,
 				0FA12EAD22EF26CF00CC0B54 /* YDidentifiers.swift */,
 				0FA12EA422EF067400CC0B54 /* YDtabvc.swift */,
 				0FA12EA322EF067400CC0B54 /* YDtabvc.xib */,
 				0FA12EAA22EF069100CC0B54 /* YDplainVC.swift */,
 				0FA12EA922EF069100CC0B54 /* YDplainvc.xib */,
-				0F7E495B22D760730010F052 /* YDSearchModel.swift */,
-				0F1565D32191F068009D8033 /* YDAppDelegate.swift */,
 				0F1565D52191F068009D8033 /* YDSummaryVC.swift */,
+				0F7E495B22D760730010F052 /* YDSummaryModel.swift */,
 				0F7E495922D644710010F052 /* YDPersistSettings.swift */,
 				0FDA722A22D4E9550050A385 /* YDTimeHelper.swift */,
 				0F7CA2E521C7B92100C552EE /* YDParseFile.swift */,
@@ -339,7 +339,7 @@
 				0FDA722D22D4E9550050A385 /* YDTimeHelper.swift in Sources */,
 				0F2B335521CA9AB5000970C9 /* YDTabsModel.swift in Sources */,
 				0F1248EA2199A5BB00F908A9 /* main.swift in Sources */,
-				0F7E495E22D760730010F052 /* YDSearchModel.swift in Sources */,
+				0F7E495E22D760730010F052 /* YDSummaryModel.swift in Sources */,
 				0FF270A12199B09900A4A7FD /* YDStringHelpers.swift in Sources */,
 				0F7EA43022D856E400B0542D /* YDParseFile.swift in Sources */,
 			);
@@ -363,7 +363,7 @@
 				0FA12EAC22EF069100CC0B54 /* YDplainVC.swift in Sources */,
 				0FA12EB122EF270000CC0B54 /* YDWindow.swift in Sources */,
 				0F1565D42191F068009D8033 /* YDAppDelegate.swift in Sources */,
-				0F7E495C22D760730010F052 /* YDSearchModel.swift in Sources */,
+				0F7E495C22D760730010F052 /* YDSummaryModel.swift in Sources */,
 				0FA12EA622EF067400CC0B54 /* YDtabvc.swift in Sources */,
 				0FA12EA822EF068500CC0B54 /* YDResultsModel.swift in Sources */,
 			);
@@ -375,7 +375,7 @@
 			files = (
 				0F1565E72191F06A009D8033 /* beautiful_parserTests.swift in Sources */,
 				0FDA722E22D4EB3C0050A385 /* YDEnum.swift in Sources */,
-				0F7E495D22D760730010F052 /* YDSearchModel.swift in Sources */,
+				0F7E495D22D760730010F052 /* YDSummaryModel.swift in Sources */,
 				0FDA722C22D4E9550050A385 /* YDTimeHelper.swift in Sources */,
 				0FA12EAF22EF26CF00CC0B54 /* YDidentifiers.swift in Sources */,
 			);

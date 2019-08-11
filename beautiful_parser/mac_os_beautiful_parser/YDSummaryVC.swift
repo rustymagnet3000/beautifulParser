@@ -35,12 +35,18 @@ class YDSummaryController: NSViewController {
     
     @IBAction func run_btn(_ sender: Any) {
         let start_time = YD_Time_Helper(raw_date: Date())
+        tableViewData = []                  // Needed to be cleaned after each button click
         let multipleTabs: [YDTabsModel]
+        let summaryPage: [YDSummaryModel]
+        
         let tabvc = YDtabvc(nibName: YDNibIdentifier.ydtabvc, bundle: nil)
         
         do {
-            let data: Data = try Data(contentsOf: YDTabsStub.fileURL)
+            var data = try Data(contentsOf: YDTabsStub.searchTabsURL)
             multipleTabs = try JSONDecoder().decode([YDTabsModel].self, from: data)
+            data = try Data(contentsOf: YDTabsStub.searchTermsURL)
+            summaryPage = try JSONDecoder().decode([YDSummaryModel].self, from: data)
+            
         }
         catch {
             print("🕵🏼‍♂️ catch block")
@@ -53,14 +59,19 @@ class YDSummaryController: NSViewController {
         DispatchQueue.global(qos: .userInitiated).async {
             
             if let logs: YDLogFile = self.logFile {
-                if let a = YDParseFile(logFileUrl: logs.fileURL){
-                    self.tableViewData = a.ydEnumerateResults()
-                }
                 
                 guard let parsed = YDSimpleParse(logFileUrl: logs.fileURL) else {
                     return
                 }
   
+                for var i in summaryPage {
+                    print(i.searchName)
+                    i.findAndCutResult(logsByLine: parsed.logsByLine)
+                    if i.searchResult != nil {
+                        self.tableViewData.append(i.singleRecord())
+                    }
+                }
+                
                 for var i in multipleTabs {
                     i.cutter(logsByLine: parsed.logsByLine)
                     if i.results.elements.count > 0 {
