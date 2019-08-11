@@ -35,14 +35,11 @@ class YDSummaryController: NSViewController {
     
     @IBAction func run_btn(_ sender: Any) {
         let start_time = YD_Time_Helper(raw_date: Date())
-        let tabs = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_tabs.json"
-        let home = FileManager.default.homeDirectoryForCurrentUser
-        let file = home.appendingPathComponent(tabs)
         let multipleTabs: [YDTabsModel]
         let tabvc = YDtabvc(nibName: YDNibIdentifier.ydtabvc, bundle: nil)
         
         do {
-            let data: Data = try Data(contentsOf: file)
+            let data: Data = try Data(contentsOf: YDTabsStub.fileURL)
             multipleTabs = try JSONDecoder().decode([YDTabsModel].self, from: data)
         }
         catch {
@@ -60,24 +57,19 @@ class YDSummaryController: NSViewController {
                     self.tableViewData = a.ydEnumerateResults()
                 }
                 
-                for i in multipleTabs {
-
-                    if let parsed = YDParseAndCount(logFileUrl: logs.fileURL, searchStr: i.searchPattern) {
-                        var nTabResults: [YDTabModel] = []
-                        let tab = YDTabModel(title: i.tabName, results: parsed.results)
-                        nTabResults.append(tab)
-                        
-                        for i in nTabResults {
-                            let vc = YDplainVC(nibName: YDNibIdentifier.ydplainvc, bundle: nil)
-                            vc.tableViewData = i.results
-                            
-                            let tabbaritem = NSTabViewItem.init(viewController: vc)
-                            tabbaritem.label = i.title
-                            tabvc.addTabViewItem(tabbaritem)
-                        }
-                        
+                guard let parsed = YDSimpleParse(logFileUrl: logs.fileURL) else {
+                    return
+                }
+  
+                for var i in multipleTabs {
+                    i.cutter(logsByLine: parsed.logsByLine)
+                    if i.results.elements.count > 0 {
+                        let vc = YDplainVC(nibName: YDNibIdentifier.ydplainvc, bundle: nil)
+                        vc.tableViewData = i.results
+                        let tabbaritem = NSTabViewItem.init(viewController: vc)
+                        tabbaritem.label = i.tabName
+                        tabvc.addTabViewItem(tabbaritem)
                     }
-
                 }
             }
             

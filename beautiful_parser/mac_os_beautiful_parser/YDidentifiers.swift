@@ -8,4 +8,6 @@ enum YDNibIdentifier {
 
 enum YDStaticStrings {
     static let ydPlainVCTitle = "🐝 Bee Parser results 🐝"
-    static let ydWindowTitle = "🐝 Bee Parser 🐝"}
+    static let ydWindowTitle = "🐝 Bee Parser 🐝"
+}
+

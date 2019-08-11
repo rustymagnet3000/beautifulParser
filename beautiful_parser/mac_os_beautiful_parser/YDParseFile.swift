@@ -10,17 +10,13 @@ class YDParseFile {
     convenience init? (logFileUrl: URL) {
         
         do {
-            let searchTerms = "Coding/beautifulParser/beautiful_parser/not_on_repo/search_terms.json"
-            let home = FileManager.default.homeDirectoryForCurrentUser
-            let file = home.appendingPathComponent(searchTerms)
-            guard let stFile = YDLogFile(file: file) else {
+            guard let stFile = YDLogFile(file: YDTabsStub.fileURL) else {
                 throw YDError.SearchTermFileFailed
             }
-            /* Convert into the Search Term model */
+            
             let data: Data = try Data(contentsOf: stFile.fileURL)
             let results: [YDSearchModel] = try JSONDecoder().decode([YDSearchModel].self, from: data)
             
-            /* Split log file into large String and chop by separator */
             let logStrs: String = try String(contentsOf: logFileUrl, encoding: String.Encoding.utf8)
             
             self.init(stResults: results, logsByLine: logStrs.split(separator: "\n"))
