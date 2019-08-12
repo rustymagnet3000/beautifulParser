@@ -4,7 +4,8 @@ struct YDSummaryModel: Decodable {
     var searchName: String
     var searchResult: String?
     var cutColumns: Int?
-
+    var prettyResult: String?
+    
     init(searchPattern: String, searchName: String, cutColumns: Int) {
         self.searchPattern = searchPattern
         self.searchName = searchName
@@ -17,7 +18,12 @@ struct YDSummaryModel: Decodable {
     }
 
     func singleRecord() -> [String: String] {
-        return ["keyColumn":searchName, "valueColumn":(searchResult ?? "not found")]
+        
+        if let a = prettyResult {
+            return ["keyColumn":searchName, "valueColumn":a]
+        }
+        return ["keyColumn":searchName, "valueColumn":(searchResult ?? "🎭")]
+        
     }
     
     mutating func findAndCutResult(logsByLine: [String.SubSequence]) {

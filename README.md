@@ -1,34 +1,49 @@
 # 🐝 Bee Parser 🐝
-A macOS app built in Swift 5 that could parse large log files.  
+A macOS app.
 
-The app was designed to be extendable; you could add specific items of interest.  It was the user's effort in this area that would reap the greatest rewards.
+The app parsed large log files.  You could add specific items of interest.  It was the user's effort of adding `search terms` that would reap the greatest rewards.
+
+The code was written in `Swift 5.1`.
 
 ## Example Search Term file
+The results from this file would populate the Summary `View Controller`.
 ```
 [
     {"searchPattern": "FoO", "searchName": "Foo","cutColumns": 5},
     {"searchPattern": "b&r", "searchName": "Bar"}
 ]
 ```
-## Building Blocks
-There are 3 Objects that provide the foundation of the `Bee Parser`.
 
-Search  | Search & Count |   YDSearch
---|---|--
-json file | json file |  json file
-Add each search term  | Add each search term |  Point to file  
-1 : 1 results  | 1 : N results   |  -
+## Example Search Tabs file
+The results from this file would auto-generate a Tab and populate the Tab will all matches found.
+```
+[
+    {"searchPattern": "https://", "tabName": "Network request"},
+    {"searchPattern": "FooBar", "tabName": "Foo","cutColumns": 5},
+    {"searchPattern": "errors", "tabName": "All Errors","cutColumns": 1}
+]
+```
+## Building Blocks
+-| Search Term  | Search Tabs
+--|--|---
+Input | json file |  json file
+Purpose | Find first | Find all
 
 
 ## Planned improvements
-- Change Search Model to include a "count"
-- Dynamically add a TabBar
-- Change Search Model to allow you to override what is found in the logs with a nicer to read message
+- Add `Copy` when you press `Cmd+C`
+- Add `Copy` from the `Edit` menu option
+- Add a `Uniques_only` property on TabsModel
+- Change `Search Model` to give pretty to read message
+- Add `Spinner` to block activity while parsing
+- Add search for `individual items`
+- Add `custom regex` search
+
+## Completed improvements
+- ~Change Search Model to include a "count"~
+- ~Dynamically add a TabBar~
 - ~Multi-threaded, for parsing large files.~
 - ~Persistent file names, to improve the user experience.~
-- Add Spinner to block activity while parsing.
-- Count, search terms that focus on counting of certain strings.
-- Order, search term that returns the order of specific log entries [like network requests]
 
 ## Design Notes
 #### Avoid Swift Playgrounds on macOS

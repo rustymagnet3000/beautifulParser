@@ -80,7 +80,6 @@
 		0F1565E22191F06A009D8033 /* beautiful_parserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beautiful_parserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1565E62191F06A009D8033 /* beautiful_parserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beautiful_parserTests.swift; sourceTree = "<group>"; };
 		0F1565E82191F06A009D8033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F2B335121CA2176000970C9 /* search_terms_backup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_terms_backup.json; sourceTree = "<group>"; };
 		0F2B335221CA952D000970C9 /* search_tabs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_tabs.json; sourceTree = "<group>"; };
 		0F2B335321CA9AB5000970C9 /* YDTabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDTabsModel.swift; sourceTree = "<group>"; };
 		0F7CA2E521C7B92100C552EE /* YDParseFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDParseFile.swift; sourceTree = "<group>"; };
@@ -199,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				0F7CA2E921C80FC000C552EE /* logs.txt */,
-				0F2B335121CA2176000970C9 /* search_terms_backup.json */,
 				0F2B335221CA952D000970C9 /* search_tabs.json */,
 				0FF270A42199BF4C00A4A7FD /* search_terms.json */,
 				0F975D1A23002F7900AD4698 /* stub_data.swift */,

@@ -65,11 +65,8 @@ class YDSummaryController: NSViewController {
                 }
   
                 for var i in summaryPage {
-                    print(i.searchName)
                     i.findAndCutResult(logsByLine: parsed.logsByLine)
-                    if i.searchResult != nil {
-                        self.tableViewData.append(i.singleRecord())
-                    }
+                    self.tableViewData.append(i.singleRecord())
                 }
                 
                 for var i in multipleTabs {
