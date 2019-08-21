@@ -46,8 +46,8 @@ Purpose | Find first | Find all
 - ~Persistent file names, to improve the user experience.~
 
 ## Design Notes
-#### Avoid Swift Playgrounds on macOS
-Swift Playgrounds remain unstable in Xcode 10.  version 10.1 made major stability improvements but I preferred to add a Command Line Swift target to my project to test new building blocks like _Structs_ and _Classes_.
+#### Command Line app VS Playgrounds on macOS
+Swift Playgrounds remained unstable in Xcode 10.  version 10.1 made major stability improvements but I preferred to add a `Command Line Swift target` for testing harder functionality.
 
 #### Persistence in the real-world
 When people could delete, rename or move a log file I had to use Swift `optionals` when trying to check if a persisted file still existed before offering it to the user.

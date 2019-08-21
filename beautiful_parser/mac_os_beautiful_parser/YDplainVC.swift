@@ -12,8 +12,18 @@ class YDplainVC: NSViewController {
         tableOutlet.usesAlternatingRowBackgroundColors = true
         tableOutlet.delegate = self
         tableOutlet.dataSource = self
+        tableOutlet.target = self
+        tableOutlet.allowsMultipleSelection = true
+        tableOutlet.registerForDraggedTypes([.string, .YDPasteboardType])
+        tableOutlet.setDraggingSourceOperationMask([.copy, .delete], forLocal: false)
+        tableOutlet.doubleAction = #selector(ydTableviewDoubleClick(_:))
+    }
+    
+    @objc func ydTableviewDoubleClick(_ sender:AnyObject) {
+        tableOutlet.hideRows(at: tableOutlet.selectedRowIndexes, withAnimation: .slideDown)
     }
 }
+
 
 extension YDplainVC: NSTableViewDataSource, NSTableViewDelegate {
     
@@ -47,5 +57,80 @@ extension YDplainVC: NSTableViewDataSource, NSTableViewDelegate {
             return cell
         }
         return nil
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 25
+    }
+    
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: NSTableView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
+        if operation == .delete,
+            let items = session.draggingPasteboard.pasteboardItems
+        {
+            let indexes = items.compactMap {
+                $0.integer(forType: .YDPasteboardType)
+            }
+            
+            tableView.removeRows(at: IndexSet(indexes), withAnimation: .slideUp)
+        }
+    }
+    
+    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+        
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: rowIndexes, requiringSecureCoding: false)
+            pboard.declareTypes([.YDPasteboardType], owner: self)
+            pboard.setData(data, forType: .YDPasteboardType)
+        }
+        catch {
+            return false
+        }
+        
+        return true
+    }
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        return YDPasteboardWriter(detail: tableViewData.elements[row].1, at: row)
+    }
+    
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        
+        
+        guard dropOperation == .above else { return [] }
+        
+        if let source = info.draggingSource as? NSTableView,
+            source === tableView
+        {
+            tableView.draggingDestinationFeedbackStyle = .gap
+        } else {
+            tableView.draggingDestinationFeedbackStyle = .regular
+        }
+        return .move
+    }
+    
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        
+        guard let items = info.draggingPasteboard.pasteboardItems else { return false }
+        let oldIndexes: [Int] = items.compactMap{ $0.integer(forType: .YDPasteboardType) }
+        
+        tableView.beginUpdates()
+        var oldIndexOffset = 0
+        var newIndexOffset = 0
+        
+        for oldIndex in oldIndexes {
+            if oldIndex < row {
+                tableView.moveRow(at: oldIndex + oldIndexOffset, to: row - 1)
+                oldIndexOffset -= 1
+            } else {
+                tableView.moveRow(at: oldIndex, to: row + newIndexOffset)
+                newIndexOffset += 1
+            }
+        }
+        tableView.endUpdates()
+        return true
     }
 }

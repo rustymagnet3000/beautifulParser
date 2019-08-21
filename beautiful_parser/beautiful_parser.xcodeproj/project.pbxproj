@@ -14,6 +14,7 @@
 		0F1565D82191F06A009D8033 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1565D72191F06A009D8033 /* Assets.xcassets */; };
 		0F1565DB2191F06A009D8033 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1565D92191F06A009D8033 /* Main.storyboard */; };
 		0F1565E72191F06A009D8033 /* beautiful_parserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1565E62191F06A009D8033 /* beautiful_parserTests.swift */; };
+		0F1F6E45230D5EF300A1F23D /* YDPasteboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1F6E44230D5EF300A1F23D /* YDPasteboardUtil.swift */; };
 		0F2B335421CA9AB5000970C9 /* YDTabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B335321CA9AB5000970C9 /* YDTabsModel.swift */; };
 		0F2B335521CA9AB5000970C9 /* YDTabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B335321CA9AB5000970C9 /* YDTabsModel.swift */; };
 		0F7CA2E621C7B92100C552EE /* YDParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7CA2E521C7B92100C552EE /* YDParseFile.swift */; };
@@ -80,6 +81,7 @@
 		0F1565E22191F06A009D8033 /* beautiful_parserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beautiful_parserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1565E62191F06A009D8033 /* beautiful_parserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beautiful_parserTests.swift; sourceTree = "<group>"; };
 		0F1565E82191F06A009D8033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F1F6E44230D5EF300A1F23D /* YDPasteboardUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDPasteboardUtil.swift; sourceTree = "<group>"; };
 		0F2B335221CA952D000970C9 /* search_tabs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_tabs.json; sourceTree = "<group>"; };
 		0F2B335321CA9AB5000970C9 /* YDTabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDTabsModel.swift; sourceTree = "<group>"; };
 		0F7CA2E521C7B92100C552EE /* YDParseFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDParseFile.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		0F1565D22191F068009D8033 /* mac_os_beautiful_parser */ = {
 			isa = PBXGroup;
 			children = (
+				0F1F6E44230D5EF300A1F23D /* YDPasteboardUtil.swift */,
 				0F1565D32191F068009D8033 /* YDAppDelegate.swift */,
 				0FA12EAD22EF26CF00CC0B54 /* YDidentifiers.swift */,
 				0FA12EA422EF067400CC0B54 /* YDtabvc.swift */,
@@ -360,6 +363,7 @@
 				0FF270A22199BE5700A4A7FD /* YDStringHelpers.swift in Sources */,
 				0FA12EAC22EF069100CC0B54 /* YDplainVC.swift in Sources */,
 				0FA12EB122EF270000CC0B54 /* YDWindow.swift in Sources */,
+				0F1F6E45230D5EF300A1F23D /* YDPasteboardUtil.swift in Sources */,
 				0F1565D42191F068009D8033 /* YDAppDelegate.swift in Sources */,
 				0F7E495C22D760730010F052 /* YDSummaryModel.swift in Sources */,
 				0FA12EA622EF067400CC0B54 /* YDtabvc.swift in Sources */,
@@ -549,7 +553,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "youdog.com.parser.beautiful-parser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -570,7 +574,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "youdog.com.parser.beautiful-parser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
