@@ -10,6 +10,7 @@ class YDplainVC: NSViewController {
         super.viewDidLoad()
         self.title = YDStaticStrings.ydPlainVCTitle
         tableOutlet.usesAlternatingRowBackgroundColors = true
+        tableOutlet.intercellSpacing = NSSize(width: 10, height: 15)
         tableOutlet.delegate = self
         tableOutlet.dataSource = self
         tableOutlet.target = self

@@ -56,7 +56,7 @@ class YDSummaryController: NSViewController {
         let group = DispatchGroup()
         group.enter()
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.main.async {
             
             if let logs: YDLogFile = self.logFile {
                 
